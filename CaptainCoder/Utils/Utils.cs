@@ -7,12 +7,19 @@ namespace CaptainCoder
     public class Utils
     {
 
+        public static readonly Utils Instance = new Utils();
+
+        private Utils()
+        {
+            
+        }
+
         /// <summary>
         /// Given a string, return an IEnumerable of each line in the string.
         /// </summary>
         /// <param name="text">The string to be enumerated.</param>
         /// <returns>An IEnumerable of strings</returns>
-        public static IEnumerable<String> GetStringIterable(string text)
+        public IEnumerable<String> GetStringIterable(string text)
         {
             string line;
             using StringReader reader = new StringReader(text);
@@ -31,7 +38,7 @@ namespace CaptainCoder
         /// <typeparam name="K">The key type of the dictionary.</typeparam>
         /// <typeparam name="V">The value type of the dictionary.</typeparam>
         /// <returns>An enumeration of pair of key values.</returns>
-        public static IEnumerable<(K, V)> GetKeyValueEnumerable<K, V>(Dictionary<K, V> dict)
+        public IEnumerable<(K, V)> GetKeyValueEnumerable<K, V>(Dictionary<K, V> dict)
         {
             foreach (K key in dict.Keys)
             {
@@ -49,7 +56,7 @@ namespace CaptainCoder
         /// <typeparam name="K">The type of the keys.</typeparam>
         /// <typeparam name="V">The type of the values.</typeparam>
         /// <returns>A dictionary containing the key value pairs specified.</returns>
-        public static Dictionary<K, V> ToDict<K, V>(IEnumerable<(K, V)> data)
+        public Dictionary<K, V> ToDict<K, V>(IEnumerable<(K, V)> data)
         {
             Dictionary<K, V> d = new Dictionary<K, V>();
             if (data == null)
@@ -85,7 +92,7 @@ namespace CaptainCoder
         /// <param name="arr">The 2D array.</param>
         /// <typeparam name="T">The type of the data stored in the array.</typeparam>
         /// <returns>An IEnumerable of the data in the array/</returns>
-        public static IEnumerable<(int, int, T)> Get2DEnumerable<T>(T[,] arr)
+        public IEnumerable<(int, int, T)> Get2DEnumerable<T>(T[,] arr)
         {
             for (int r = 0; r < arr.GetLength(0); r++)
             {
